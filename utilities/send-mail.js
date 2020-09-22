@@ -132,15 +132,15 @@ exports.notice = (comment) => {
       headers: {
         "Content-type": "application/x-www-form-urlencoded",
       },
+    })      
+    .then(function (response) {
+      if (response.status === 200 && response.data.error === "SUCCESS")
+        console.log("已微信提醒站长了！");
+      else console.log("微信提醒失败，显示信息:", response.data);
     })
-      .then(function (response) {
-        if (response.data.error === "SUCCESS")
-          console.log("已微信提醒站长");
-        else console.log("微信提醒失败:", response.data);
-      })
-      .catch(function (error) {
-        console.warn("微信提醒失败:", error.message);
-      });
+    .catch(function (error) {
+      console.warn("微信提醒失败:", error.message);
+    });
   }
 
 
