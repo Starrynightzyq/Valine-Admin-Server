@@ -127,7 +127,7 @@ exports.notice = (comment) => {
   if (process.env.SCKEY_TEST != null) {
     axios({
       method: "post",
-      url: `https://sctapi.ftqq.com/${process.env.SCKEY}.send`,
+      url: `https://sctapi.ftqq.com/${process.env.SCKEY_TEST}.send`,
       data: `title=${process.env.SITE_NAME} 来新评论啦！&desp=${scContent}`,
       headers: {
         "Content-type": "application/x-www-form-urlencoded",
