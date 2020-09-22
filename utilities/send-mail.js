@@ -123,6 +123,28 @@ exports.notice = (comment) => {
         console.warn("微信提醒失败:", error.message);
       });
   }
+  // server酱测试版微信提醒
+  if (process.env.SCKEY_TEST != null) {
+    axios({
+      method: "post",
+      url: `https://sctapi.ftqq.com/${process.env.SCKEY}.send`,
+      data: `title=${process.env.SITE_NAME} 来新评论啦！&desp=${scContent}`,
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+      },
+    })
+      .then(function (response) {
+        if (response.status === 200 && response.data.errmsg === "success")
+          console.log("已微信提醒站长");
+        else console.log("微信提醒失败:", response.data);
+      })
+      .catch(function (error) {
+        console.warn("微信提醒失败:", error.message);
+      });
+  }
+
+
+
   // QQ提醒
   if (process.env.QMSG_KEY != null) {
     if (process.env.QQ_SHAKE != null) {
