@@ -134,7 +134,7 @@ exports.notice = (comment) => {
       },
     })
       .then(function (response) {
-        if (response.status === 200 && response.data.error === "SUCCESS")
+        if (response.data.error === "SUCCESS")
           console.log("已微信提醒站长");
         else console.log("微信提醒失败:", response.data);
       })
